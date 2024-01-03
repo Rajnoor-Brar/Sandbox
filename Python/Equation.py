@@ -129,8 +129,7 @@ class Equation():
             
         return Equation(syms=syms,coefficients=coefficients.tolist(),name=f"{self.name}+{other.name}")
  
-    def __radd__(self,other):
-        return self+other
+    def __radd__(self,other):  return self+other
     
     def __sub__(self,other):
         if type(other)==type(1) or type(other)==type(1.0):
@@ -188,8 +187,7 @@ class Equation():
             
         return Equation(syms=syms,coefficients=coefficients.tolist(),name=f"{self.name}-{other.name}")    
     
-    def __rsub__(self,other):
-        return self-other
+    def __rsub__(self,other):  return self-other
           
     def __mul__(self,other):
         if type(other)==type(1) or type(other)==type(1.0):
@@ -241,8 +239,7 @@ class Equation():
  
         return answer
 
-    def __rmul__(self,other):
-        return self*other
+    def __rmul__(self,other):  return self*other
     
     def __truediv__(self,other):
         if type(other)==type(1) or type(other)==type(1.0):

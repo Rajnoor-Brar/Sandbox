@@ -9,7 +9,7 @@ class Equation():
             self.dimensions = self.coefficients.ndim
             if all(x==self.coefficients.shape[0] for x in self.coefficients.shape): self.degree=self.coefficients.shape[0]-1
             else: raise AttributeError("Coefficients must be a square matrix")
-            self.syms = self.symSetUp(syms)
+            self.syms = Equation.symSetUp(self.dimensions,syms)
         
         elif dim!=None and deg!=None:
             self.degree = abs(int(deg))
@@ -321,7 +321,7 @@ class Equation():
     @classmethod
     def symSetUp(cls,dimensions:int,syms:list) -> list:
         if syms==None:
-            return ["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"][:self.dimensions]
+            return ["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"][:dimensions]
         elif len(syms)==dimensions:
             return syms
         elif len(syms)>dimensions:

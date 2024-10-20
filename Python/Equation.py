@@ -14,11 +14,11 @@ class Equation():
         elif dim!=None and deg!=None:
             self.degree = abs(int(deg))
             self.dimensions = abs(int(dim))
-            self.syms = self.symSetUp(syms)
+            self.syms = Equation.symSetUp(self.dimensions,syms)
             self.coefficients = np.zeros(shape=tuple(self.degree+1 for _ in range(self.dimensions)))
             self.coeffSetUp()        
         
-        else: raise AttributeError("Insuffcient Attribute provided for Equation Construction")   
+        else: raise AttributeError("Insuffcient Attributes provided for Equation Construction")   
         self.name=name
     
     def export(self) -> dict:
@@ -27,21 +27,8 @@ class Equation():
         dict["syms"]=self.syms
         dict["dimensions"]=self.dimensions
         dict["degree"]=self.degree
+        dict["name"]=self.name
         return dict
-
-    def symSetUp(self,syms):
-        if syms==None:
-            return ["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"][:self.dimensions]
-        elif len(syms)==self.dimensions:
-            return syms
-        elif len(syms)>self.dimensions:
-            return syms[:self.dimensions]
-        
-        elif len(syms)<self.dimensions:
-            dif=self.dimensions-len(syms)
-            cache=["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"]
-            syms+=[x for x in cache if x not in syms][:dif]
-            return syms
                 
     def coeffSetUp(self):
         sp=self.__class__.sp
@@ -55,7 +42,7 @@ class Equation():
                 self.coefficients[index] = float(input(string + " "))
                 if sum(index)>0:print(" + ", end="")
 
-    def copy(self):
+    def copy(self) -> "Equation":
         return Equation(coefficients=self.coefficients.tolist(),syms=self.syms.copy(),name=self.name)
 
     def __call__(self, *args: float,) -> float:
@@ -64,16 +51,16 @@ class Equation():
         return self.f(args)
 
     def f(self, fval:list) -> float:
-        
-        for index in np.ndindex((self.degree+1 for _ in range(self.dimensions))):
+        ans=0
+        for index in np.ndindex(tuple(self.degree+1 for _ in range(self.dimensions))):
             if sum(index)<=self.degree:
                 val=1
-                for i in range(self.dimensions):
-                    val*= fval[i]**index[i]
+                for i in range(self.dimensions):val*= fval[i]**index[i]
                 val*=self.coefficients[index]
-        return val
+            ans+=val
+        return ans
                  
-    def __add__(self,other):
+    def __add__(self,other:"Equation") -> "Equation":
         if type(other)==type(1) or type(other)==type(1.0):
             answer=self.copy()
             answer.coefficients[tuple(0 for _ in range(self.dimensions))]+=other
@@ -129,9 +116,9 @@ class Equation():
             
         return Equation(syms=syms,coefficients=coefficients.tolist(),name=f"{self.name}+{other.name}")
  
-    def __radd__(self,other):  return self+other
+    def __radd__(self,other:"Equation") -> "Equation":  return self+other
     
-    def __sub__(self,other):
+    def __sub__(self,other:"Equation") -> "Equation":
         if type(other)==type(1) or type(other)==type(1.0):
             answer=self.copy()
             answer.coefficients[tuple(0 for _ in range(self.dimensions))]-=other
@@ -187,9 +174,9 @@ class Equation():
             
         return Equation(syms=syms,coefficients=coefficients.tolist(),name=f"{self.name}-{other.name}")    
     
-    def __rsub__(self,other):  return self-other
+    def __rsub__(self,other:"Equation") -> "Equation":  return -1*(self-other)
           
-    def __mul__(self,other):
+    def __mul__(self,other:"Equation") -> "Equation":
         if type(other)==type(1) or type(other)==type(1.0):
             answer=self.copy()
             answer.coefficients=answer.coefficients*other
@@ -235,23 +222,23 @@ class Equation():
                         dest[x]=s_dest+o_dest
                     
                     dest=tuple(dest)
-                    answer.coefficients[dest]=answer.coefficients[dest]+a*b
+                    answer.coefficients[dest]+=a*b
  
         return answer
 
-    def __rmul__(self,other):  return self*other
+    def __rmul__(self,other:"Equation") -> "Equation":  return self*other
     
-    def __truediv__(self,other):
+    def __truediv__(self,other:"Equation") -> "Equation":
         if type(other)==type(1) or type(other)==type(1.0):
             answer=self.copy()
             answer.coefficients=answer.coefficients/other
             return answer
         else: raise TypeError("Divisor must be a number. Equation division is not yet supported")
 
-    def __rtruediv__(self,other):
+    def __rtruediv__(self,other) -> None:
         raise TypeError("Cannot divide by an equation")
         
-    def __pow__(self,power:int):
+    def __pow__(self,power:int) -> "Equation":
         if type(power)==type(1):
             answer=self.copy()
             for _ in range(power-1):
@@ -259,7 +246,7 @@ class Equation():
             return answer
         else: raise TypeError("Exponent must be an integer") 
     
-    def __neg__(self):
+    def __neg__(self) -> "Equation":
         answer=self.copy()
         answer.coefficients*=(-1)
         return answer
@@ -287,6 +274,7 @@ class Equation():
                         else: string += ".".join(coeff)
                         if sum(index)>0:
                             string+="·"
+                    elif sum(index)==0:string+="1"
 
                     
                     for x in range(self.dimensions): 
@@ -304,7 +292,7 @@ class Equation():
     def __repr__(self) -> str:
         return self.__str__()
     
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other:"Equation") -> bool:
         
         if self.dimensions==other.dimensions and self.degree==other.degree and set(self.syms)==set(other.syms):
             self_coefficients=self.coefficients.copy()
@@ -325,7 +313,42 @@ class Equation():
         else: return False
     
     @classmethod
-    def sp(cls,ep):
+    def sp(cls,ep:str) -> str:
+        # To get superscript characters when typing equation
         dict={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"}
         return "".join([dict[i] for i in str(int(ep))])
     
+    @classmethod
+    def symSetUp(cls,dimensions:int,syms:list) -> list:
+        if syms==None:
+            return ["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"][:self.dimensions]
+        elif len(syms)==dimensions:
+            return syms
+        elif len(syms)>dimensions:
+            return syms[:dimensions]
+        
+        elif len(syms)<dimensions:
+            dif=dimensions-len(syms)
+            cache=["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"]
+            syms+=[x for x in cache if x not in syms][:dif]
+            return syms
+    
+    @classmethod
+    def rootCoeffs(cls, roots:list) -> list:
+        # To expand factorised equation into coefficients: (x-1)(x-2) => x^2 - 3x + 2
+        n=len(roots)
+        coeffs=[0 for _ in range(n+1)]
+        
+        def rootMult(k,j,level):
+            if (level==k):return 1
+            val=0
+            for i in range(j,n): val+= roots[i]*rootMult(k,i+1,level+1)
+            return val
+
+        for k in range(n+1): coeffs[n-k]=(rootMult(k,0,0)*pow(-1,k))
+        return coeffs
+    
+    @classmethod
+    def multirootCoeffs(cls,roots:list,syms:list) -> list:
+        dimensions=len(roots)
+        sym=Equation.symSetUp(dimensions,syms)

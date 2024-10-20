@@ -32,8 +32,7 @@ class Equation(Matrix):
         degcheck=[]
         for i in range(self.degree):
             index=[i for _ in range(self.dimensions)]
-            degcheck+= (self.get(index)!=0)
-        
+            degcheck+= (self.get(index)!=0)  
         
     def export(self):
         dict={}
@@ -56,8 +55,7 @@ class Equation(Matrix):
             cache=["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"]
             syms+=[x for x in cache if x not in syms][:dif]
             return syms
-                
-    
+                  
     def coeffSetUp(self,dim=1,degree=0, index=[]):
         sp=self.__class__.sp
         if dim>0:
@@ -130,7 +128,6 @@ class Equation(Matrix):
             
             return a+b
 
-    
     def __mul__(self,other):
         if set(self.syms)==set(other.syms):syms=self.syms
         else:  syms=self.syms+[x for x in other.syms if x not in self.syms]

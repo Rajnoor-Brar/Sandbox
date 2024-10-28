@@ -3,8 +3,11 @@ from Equation import Equation as eq
 x0=1
 h=1
 y=[1,4,8,16,32,64,128]
-func Interpolate(x,y):
+
+def Interpolate(x,y):
     n=len(y)
+    h=(x[n-1]-x[0])/(n-1)
+    x0=x[0]
     
     del_y0 = [0 for _ in range(n)];     a=del_y0.copy()
     
@@ -20,4 +23,5 @@ func Interpolate(x,y):
     
     equation.name='y'
     return equation
+
 

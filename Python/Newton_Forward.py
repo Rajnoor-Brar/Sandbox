@@ -4,6 +4,7 @@ x0=1
 h=1
 y=[1,4,8,16,32,64,128]
 n=len(y)
+val=0
 
 del_y0 = [0 for _ in range(n)];     a=del_y0.copy()
 
@@ -19,4 +20,5 @@ for i in range(n):
 
 equation.name='y'
 print(equation)
-for i in range(n): print(f'y({x0+i*h}) = {equation(x0+i*h)}')
+print(f'y({val}) = {round(equation(val),5)}')
+# for i in range(15): print(f'y({x0+i*h/2}) = {round(equation(x0+i*h/2),5)}')

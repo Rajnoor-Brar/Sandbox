@@ -12,11 +12,10 @@ class Equation():
             self.syms = Equation.symSetUp(self.dimensions,syms)
         
         elif dim!=None and deg!=None:
-            self.degree = abs(int(deg))
-            self.dimensions = abs(int(dim))
+            self.dimensions = tuple(deg+1 for _ in range(dim))
+            self.degree=deg
             self.syms = Equation.symSetUp(self.dimensions,syms)
-            self.coefficients = np.zeros(shape=tuple(self.degree+1 for _ in range(self.dimensions)))
-            self.coeffSetUp()        
+            self.coefficients = Equation.coeffSetUp(self.dimensions,self.syms,deg)        
         
         else: raise AttributeError("Insuffcient Attributes provided for Equation Construction")   
         self.name=name
@@ -30,18 +29,6 @@ class Equation():
         dict["name"]=self.name
         return dict
                 
-    def coeffSetUp(self):
-        sp=self.__class__.sp
-        indices=list(x for x in np.ndindex(tuple(self.degree+1 for _ in range(self.dimensions))))
-        indices.reverse()
-        for index in indices:
-            if sum(index)<=self.degree:
-                string=""
-                for x in range(self.dimensions): string+= f"{self.syms[x]}{sp(index[x])}"
-                
-                self.coefficients[index] = float(input(string + " "))
-                if sum(index)>0:print(" + ", end="")
-
     def copy(self) -> "Equation":
         return Equation(coefficients=self.coefficients.tolist(),syms=self.syms.copy(),name=self.name)
 
@@ -349,6 +336,16 @@ class Equation():
         return coeffs
     
     @classmethod
-    def multirootCoeffs(cls,roots:list,syms:list) -> list:
-        dimensions=len(roots)
-        sym=Equation.symSetUp(dimensions,syms)
+    def coeffSetUp(cls,dimensions,syms,deg):
+        sp=Equation.sp
+        indices=list(x for x in np.ndindex(dimensions))
+        matrix=np.zeros(shape=dimensions)
+        indices.reverse()
+        for index in indices:
+            if sum(index)<=deg:
+                string=""
+                for x in range(len(dimensions)): string+= f"{syms[x]}{sp(index[x])}"
+                
+                matrix[index] = float(input(string + " "))
+                if sum(index)>0:print(" + ", end="")
+        return matrix

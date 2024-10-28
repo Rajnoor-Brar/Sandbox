@@ -1,10 +1,11 @@
 import math
 from Equation import Equation as eq
+
+val=4.5
 x0=1
 h=1
-y=[1,4,8,16,32,64,128]
+y=[4,5,6]
 n=len(y)
-val=0
 
 del_y0 = [0 for _ in range(n)];     a=del_y0.copy()
 
@@ -14,9 +15,11 @@ for i in range(n):
         
 equation=0
 for i in range(n):
-    roots=[x0+k*h for k in range(i)]
-    coeffs=eq.rootCoeffs(roots=roots)
-    equation+=a[i]*eq(coefficients=coeffs)
+    if i>0:
+        roots=[x0+k*h for k in range(i)]
+        coeffs=eq.rootCoeffs(roots=roots)
+        equation+=a[i]*eq(coefficients=coeffs)
+    else:equation+=a[i]
 
 equation.name='y'
 print(equation)

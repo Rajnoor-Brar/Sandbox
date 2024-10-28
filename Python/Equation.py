@@ -128,13 +128,13 @@ class Equation():
                        other_coefficients=np.swapaxes(other_coefficients, j, i)
             
             if self.degree==other.degree:
-                coefficients=self.coefficients+other.coefficients
+                coefficients=self.coefficients-other.coefficients
             
             else: 
                 degree=max(self.degree,other.degree)
                 coefficients=np.zeros(shape=tuple(degree+1 for _ in range(self.dimensions)))
                 coefficients[tuple(slice(0,self.degree+1) for _ in self_syms)]+=self_coefficients
-                coefficients[tuple(slice(0,other.degree+1) for _ in other_syms)]+=other_coefficients
+                coefficients[tuple(slice(0,other.degree+1) for _ in other_syms)]-=other_coefficients
                 
         else:
             syms=self_syms+[x for x in other_syms if x not in self_syms]
@@ -349,3 +349,4 @@ class Equation():
                 matrix[index] = float(input(string + " "))
                 if sum(index)>0:print(" + ", end="")
         return matrix
+

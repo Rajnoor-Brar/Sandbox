@@ -1,4 +1,4 @@
-from Equation import Equation as eq
+from Polynomial import Polynomial as eq
 
 x=[1,2,3,4,6,7]
 y=[1,4,8,16,64,128]
@@ -20,7 +20,8 @@ for i in range(n):
     equations[i]=eq(coefficients=coeffs)
 
 curve=0
-for i in range(n):curve+=equations[i]
+for i in range(n):
+    curve=equations[i]+curve
 curve.name="y"
 print(curve)
 print(f"x = {k}, y= {curve(k)}")

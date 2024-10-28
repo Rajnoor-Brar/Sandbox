@@ -14,9 +14,11 @@ for i in range(n):
 
 equation=0
 for i in range(n):
-    roots=[xn-k*h for k in range(i)]
-    coeffs=eq.rootCoeffs(roots=roots)
-    equation+=a[i]*eq(coefficients=coeffs)
+    if i>0:
+        roots=[xn-k*h for k in range(i)]
+        coeffs=eq.rootCoeffs(roots=roots)
+        equation+=a[i]*eq(coefficients=coeffs)
+    else:equation+=a[i]
 
 equation.name='y'
 print(equation)

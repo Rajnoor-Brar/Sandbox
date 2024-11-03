@@ -1,7 +1,7 @@
 import numpy as np
 
 class Equation():
-    def __init__(self, dim:int=None, deg:int=None, coefficients:list="Manual", syms:list=None, name:str='f'):
+    def __init__(self, dim:int=None, deg:int=None, coefficients:list[float]="Manual", syms:list[str]=None, name:str='f'):
         
         if type(coefficients)==type([1,1]):
            # self.__class__.coeffCheck(coefficients)
@@ -37,7 +37,7 @@ class Equation():
         else: args=list(args)
         return self.f(args)
 
-    def f(self, fval:list) -> float:
+    def f(self, fval:list[float]) -> float:
         ans=0
         for index in np.ndindex(tuple(self.degree+1 for _ in range(self.dimensions))):
             if sum(index)<=self.degree:
@@ -222,7 +222,7 @@ class Equation():
             return answer
         else: raise TypeError("Divisor must be a number. Equation division is not yet supported")
 
-    def __rtruediv__(self,other) -> None:
+    def __rtruediv__(self,other:"Equation") -> None:
         raise TypeError("Cannot divide by an equation")
         
     def __pow__(self,power:int) -> "Equation":
@@ -306,7 +306,7 @@ class Equation():
         return "".join([dict[i] for i in str(int(ep))])
     
     @classmethod
-    def symSetUp(cls,dimensions:int,syms:list) -> list:
+    def symSetUp(cls,dimensions:int,syms:list[str]) -> list[str]:
         if syms==None:
             return ["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"][:dimensions]
         elif len(syms)==dimensions:
@@ -321,7 +321,7 @@ class Equation():
             return syms
     
     @classmethod
-    def rootCoeffs(cls, roots:list) -> list:
+    def rootCoeffs(cls, roots:list[float]) -> list[float]:
         # To expand factorised equation into coefficients: (x-1)(x-2) => x^2 - 3x + 2
         n=len(roots)
         coeffs=[0 for _ in range(n+1)]
@@ -336,7 +336,7 @@ class Equation():
         return coeffs
     
     @classmethod
-    def coeffSetUp(cls,dimensions,syms,deg):
+    def coeffSetUp(cls,dimensions:int,syms:list[str],deg:int):
         sp=Equation.sp
         indices=list(x for x in np.ndindex(dimensions))
         matrix=np.zeros(shape=dimensions)

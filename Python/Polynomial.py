@@ -1,5 +1,5 @@
 class Polynomial():
-    def __init__(self, deg:int=None, coefficients:list="Manual", syms:str="x", name:str='f'):
+    def __init__(self, deg:int=None, coefficients:list[float]="Manual", syms:str="x", name:str='f'):
         
         if type(coefficients)==type([1,1]):
             self.coefficients = coefficients
@@ -151,7 +151,7 @@ class Polynomial():
         return f"{self.name}({self.sym}) = {string[2:]}"
     
     def __repr__(self) -> str:
-        return self.__str__()
+        return f'Polynomial({self.degree}, {self.coefficients}, "{self.sym}")'
     
     def __eq__(self, other:"Polynomial") -> bool:
         
@@ -172,7 +172,7 @@ class Polynomial():
         return "".join([dict[i] for i in str(int(ep))])
     
     @classmethod
-    def rootCoeffs(cls, roots:list) -> list:
+    def rootCoeffs(cls, roots:list[float]) -> list[float]:
         # To expand factorised Polynomial into coefficients: (x-1)(x-2) => x^2 - 3x + 2
         n=len(roots)
         coeffs=[0 for _ in range(n+1)]

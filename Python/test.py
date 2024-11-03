@@ -1,10 +1,5 @@
+import pkg_resources
+from subprocess import call
 
-
-
-from Polynomial import Polynomial as poly
-
-a=poly(coefficients=[1,2,6,24])
-print(a)
-print(a.integrate())
-
-
+packages = [dist.project_name for dist in pkg_resources.working_set]
+call("pip install --upgrade " + ' '.join(packages), shell=True)

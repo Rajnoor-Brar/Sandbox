@@ -8,7 +8,7 @@ x=[x0+i*h for i in range(n+1)]
 y=[math.log(i) for i in x]
 order=2
 
-def Interpolate(x:list,y:list) -> "eq":
+def Interpolate(x:list[float],y:list[float]) -> "eq":
     n=len(y)
     h=(x[n-1]-x[0])/(n-1)
     x0=x[0]

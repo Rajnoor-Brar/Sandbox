@@ -12,7 +12,7 @@ class Equation():
             self.syms = Equation.symSetUp(self.dimensions,syms)
         
         elif dim!=None and deg!=None:
-            self.dimensions = tuple(deg+1 for _ in range(dim))
+            self.dimensions = dim
             self.degree=deg
             self.syms = Equation.symSetUp(self.dimensions,syms)
             self.coefficients = Equation.coeffSetUp(self.dimensions,self.syms,deg)        
@@ -44,7 +44,7 @@ class Equation():
                 val=1
                 for i in range(self.dimensions):val*= fval[i]**index[i]
                 val*=self.coefficients[index]
-            ans+=val
+                	ans+=val
         return ans
                  
     def __add__(self,other:"Equation") -> "Equation":

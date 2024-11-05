@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./classes"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "enabled"
 }

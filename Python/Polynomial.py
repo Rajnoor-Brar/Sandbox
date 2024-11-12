@@ -165,6 +165,12 @@ class Polynomial():
         for i in range(1,len(coeffs)):coeffs[i]=coeffs[i]/i
         return Polynomial(coefficients=coeffs,syms=self.sym,name=self.name)
     
+    def differentiate(self) -> "Polynomial":
+        coeffs=self.coefficients.copy()
+        for i in range(len(coeffs)):coeffs[i]=coeffs[i]*i
+        coeffs.pop(0)
+        return Polynomial(coefficients=coeffs,syms=self.sym,name=self.name)
+    
     @classmethod
     def sp(cls,ep:str) -> str:
         # To get superscript characters when typing Polynomial

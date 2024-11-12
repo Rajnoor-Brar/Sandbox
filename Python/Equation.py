@@ -44,7 +44,7 @@ class Equation():
                 val=1
                 for i in range(self.dimensions):val*= fval[i]**index[i]
                 val*=self.coefficients[index]
-                	ans+=val
+                ans+=val
         return ans
                  
     def __add__(self,other:"Equation") -> "Equation":

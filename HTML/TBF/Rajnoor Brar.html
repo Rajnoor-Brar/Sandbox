@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html"><!---Somethings are done without the reason-->
+<link rel="stylesheet" media="(min-height : 500px) and (orientation: landscape)" href="./scripts/format-pc.css"><!--(pc)and tablets-landscape-->
+<link rel="stylesheet" media="(orientation: portrait) and (min-height: 900px)" href="./scripts/format-tab.css"><!--tablets-portrait but large screen-->
+<link rel="stylesheet" media="(orientation:landscape) and (max-height:500px)" href="./scripts/format-mobilescape.css"><!--Mobile in landscape position-->
+<link rel="stylesheet" media="(orientation: portrait) and (max-height:900px)" href="./scripts/format-mobile.css"><!--portrait= width < height(mobile)-->
+
+<link rel="icon" href="./assets/title-png.png"><!---Icon on the Title Bar along with Page Title--->
+<title>The Best Forever</title> <!---<meta> tag does not have any effect, just decribes page when a link to this page is given elsewhere---->
+<meta name="author" content="Rajnoor Singh Brar">
+<meta name="description" content="The First HTML project created by Rajnoor Brar, briefly describing personal info , gaming info and acedemics">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body id="body" class="introbody" bgcolor="#202020" onload="welcome()"><div id="bodybg"></div>
+<!---------------------------------------------- TAB CONTENTS -------------------------->
+<!------------------------------------------ Home__Tab---------------------------->
+<div id="home" class="tabcontent">
+<span id="hometabs" class="hometab subtabs">
+<button id="hb1" class="homelink insight" onclick="subHome('hb1', 'overview')">OverView</button>
+<button id="hb2" class="homelink" onclick="subHome('hb2', 'html')">HTML</button>
+<button id="hb3" class="homelink" onclick="subHome('hb3', 'css')">StyleSheet</button>
+<button id="hb4" class="homelink" onclick="subHome('hb4', 'js')">JavaScript</button></span>
+<div id="basebg"></div>
+<!---------------------------Overview-------------------------->
+<div id="overview" class="base"><span class="ref"><center id="tbf">INTRODUCTION</center></span>This webpage , created by <span class="rsb">Rajnoor Brar</span>, is to provide some brief details of <span class="rsb">Rajnoor Brar</span><br>The Languages used are as Following :- <ul><li><span class="linktext" onclick="subHome('hb2', 'html')"><u>HTML</u></span></li>&nbsp;<li><span class="linktext" onclick="subHome('hb3', 'css')"><u>CSS</u></span></li>&nbsp;<li><span class="linktext" onclick="subHome('hb4', 'js')"><u>JavaScript</u></span></li></ul></div>
+<!----------------------------------HTML-------------------------->
+<div id="html" class="base"><span class="ref"><center>HTML</center></span>HTML is the base of a web-page. It consist of various simple codes known as 'Tags'.Tags determine the type and basic properties of an element in a web-page.<br>Text and Graphics like Audio ,Videos and Images etc are added using tags which may contain or modify data.<br>In short ,HTML form the basic structure and is the back-bone of the web-page</div>
+<!-------------------------------CSS-------------------------->
+<div id="css" class="base"><span class="ref"><center>CSS</center></span>CSS (Cascading StyleSheet) is used for formating text and graphics <br> It can be used to set large variety of the settings including:-<ul><li>Text Shadows</li><li>Custom Colors</li><li>BackGround Colors | Image</li><li>Different margins for each Element</li></ul></div>
+<!----------------------------JavaScript-------------------->
+<div id="js" class="base"><span class="ref"><center>JavaScript</center></span><p>JavaScript is programming language for HTML which can be used change Attributes of element , format styles in CSS ,create new elements...on the specified events like Button Click or others pre-timed programmed events</p><p>An another , advanced yet simple , form of javascript known as jQuery can also be used to give HTML a variety of dynamic features which JavaScript can't.These events can even be triggered on events like on scrolling the page etc.</p></div>
+</div>
+
+<!---------------------------------- Profile___Tab ------------------------------->
+<div id="bio" class="tabcontent">
+<div id="biobg"></div><!-- Empty element,used just for Background purpose.This element is fixed and covers all the page as width and height are set 100% of page size ,otherwise background is applied to #bio affect only where is text or graphics-->
+<span id="biotabs" class="biotab subtabs">
+<button id="bio1" class="biolink bioactive" onclick="subProfile('bio1', 'profileinfo')">Basic Profile</button>
+<button id="bio2" class="biolink" onclick="subProfile('bio2', 'like')">Likes</button>
+<button id="bio3" class="biolink" onclick="subProfile('bio3', 'socialprofile')">Social Profile</button></span>
+
+<div id="profileinfo" class="profile"><span class="ref"><center>THE BEST<br>FOREVER</center></span><u>Name</u>:Rajnoor Singh Brar<br><u>Profession</u>: Student ; Gamer ; PC Geek<br><u>Date of Birth</u>: 27 Apr,2003 (Sunday)<br><u>Height</u> : 5'11" <br><u>Weight</u> : 61 kg (approx)</div>
+<div id="like" class="profile"><span class="ref"><center>FAVOURITES</center></span><br><u>Musicians</u> : Hollywood Undead , Linkin Park<br><u>Animal</u>: Jaguars , Vipers <br><u>Birds</u>: Eagle<br><u>Movie Genres</u> : Sci-Fi , Action , Epic<br><u>Movies</u>: Marvels' , Transformers , X-Men<br><u>Uncatagorized , Others</u>:<ul><li>Dinosaurs</li><li>Nature</li><li>Genetics , Mutations</li><li>Tech , Robots</li></ul></div>
+<div id="socialprofile" class="profile"><span class="ref"><center>CONTACT INFO</center></span><u>Phone No.</u> : xxx-xxx-xxxx<br><u>G-Mail</u> : Censored<span id="at"> @ </span>gmail.com<br><u>Social Media</u> :<br>
+<a target="_blank" href="https://www.facebook.com/Oopsie"><img class="smedia imagelink" id="fbook" src="./assets/social-facebook.png"></a><br><br>
+<a target="_blank" href="https://sparkshredder.deviantart.com/"><img class="smedia imagelink" id="deviantart" src="./assets/social-deviantart.png"></a><br><br>
+<a target="_blank" href="https://plus.google.com/"><img class="smedia imagelink" id="gplus" src="./assets/social-gplus.png"></a><br><br>
+<a target="_blank" id="lineh" href="https://play.google.com/store/apps/details?id=jp.naver.line.android&amp;hl=en"><img class="smedia imagelink" id="line" src="./assets/social-line.png"></a>&#8195;&#8195;<span id="lineid">id-&gt; rajnoorbrar</span></div></div>
+
+<!-----------------------------------  Game___Tab   ----------------------->
+<div id="gaming" class="tabcontent">
+<div id="gamebg"></div>
+<span id="gametabs" class="gametab subtabs">
+<button id="hqbutton" class="gamelink online" onclick="subGame('hqbutton', 'intro')">HeadQuaters</button>
+<button id="ftfbutton" class="gamelink" onclick="subGame('ftfbutton', 'ftf')">Transformers<br>Forged To Fight</button>
+<button id="mwbutton" class="gamelink" onclick="subGame('mwbutton', 'mw')">Need For Speed<br>Most Wanted</button>
+<button id="prbutton" class="gamelink" onclick="subGame('prbutton', 'pr')">Power Rangers<br>Legacy Wars</button>
+<button id="sabutton" class="gamelink" onclick="subGame('sabutton', 'sa')">San Andreas</button>
+<button id="aocbutton" class="gamelink" onclick="subGame('aocbutton', 'aoc')">Art of Conquest</button>
+<button id="nlbutton" class="gamelink" onclick="subGame('nlbutton', 'nl')">Need For Speed<br>No Limits</button>
+<button id="ewbutton" class="gamelink" onclick="subGame('ewbutton', 'ew')">Transformers<br>Earth Wars</button></span>
+<!-----------------------HeadQuaters--------------  ------><span id="intro" class="game">
+<span class="ref"><center id="gstat">GAMING STATS</center></span>
+<img id="hqhead1" class="hqhead" src="./assets/game-hq1.png"><img id="hqhead2" class="hqhead" src="./assets/game-hq2.png">
+<u>Gaming Names</u> :- SparkShredder | NitroZeus | SoulRipper<br><u>Primary Game</u> : <span class="linktext" onclick="subGame('ftfbutton', 'ftf')">Transformers : Forged to Fight</span><br><u>Secondary games</u> : Many!</span>
+
+<!--------------   Transformers : Forged To fight  --------><span id="ftf" class="game">
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.kabam.bigrobot&amp;hl=en"><center><img id="ftftag" class="tags imagelink" src="./assets/game-ftf.png"></center></a>
+<u>Commander Name</u> : SparkShredder <br><u>Alliance</u> : Bot Destroyers <br><u>Rank</u> : Officer <br><u>Level</u> : 48&#8195;|&#8195;Experienced-Medium Strength<br><u>Playing Since</u> : 13 April ,2017<br><u>Missions Completed</u> : 903<br><u>Mission Fights Won</u> : 11,805<br><u>Arena Fights Won</u> : 5190<br><u>Raid Attacks Won</u> : 813<br><u>Top Bots</u>: <span onclick="showBot('drift')" class="bottext">Drift</span><span class="insignia">P</span>, <span onclick="showBot('mv1')" class="bottext">Prime MV1</span><span class="insignia">P</span>, <span onclick="showBot('shockwave')" class="bottext">ShockWave</span><span class="insignia">a</span>, <span onclick="showBot('soundwave')" class="bottext">SoundWave</span><span class="insignia">a</span>, <span onclick="showBot('rhinox')" class="bottext">Rhinox</span><span class="insignia">C</span><br>
+<img id="drift" class="bots" src="./assets/bot-a'bot-drift.png"> <img id="mv1" class="bots" src="./assets/bot-a'bot-prime.png"> <img id="shockwave" class="bots" src="./assets/bot-d'con-shockwave.png"> <img id="soundwave" class="bots" src="./assets/bot-d'con-soundwave.png"> <img id="rhinox" class="bots" src="./assets/bot-maximal-rhinox.png"><br><br><br><Br><br></span><!--bots image are named as "'bot-botFaction-botName" a'bot=autobot , d'con=decepticon-->
+
+<!-----------    Need for Speed : Most Wanted        ------><span id="mw" class="game">
+<center><a target="_blank" href="https://filehippo.com/download_need_for_speed_most_wanted/"><img id="mwtag" class="tags imagelink" src="./assets/game-mw.png"></a></center><u>Alias</u> : Drift <br><u>Career Progress</u> : Just Began <br><u>Played For</u> : 5 days  </span>
+<!----------  Power Rangers : Legacy wars ---------------><span id="pr" class="game">
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.nway.powerrangerslegacywars&amp;hl=en"><center><img id="prtag" class="tags imagelink" src="./assets/game-pr.png"></center></a>
+<u>Ranger Profile</u> : SparkShredder<br><u>Alliance</u> : Dark Warriors<br><u>Rank</u> : Soldier<br><u>Played For</u> : 16 days <br><u>Level</u> : 3&#8195;| Very Low Strength</span>
+
+<!----------- SanAndreas ------------------------------------><span id="sa" class="game">
+<a target="_blank" href="http://www.apunkagames.net/2013/11/gta-san-andreas-game.html"><center><img id="satag" class="tags imagelink" src="./assets/game-sa.png"></center></a><u>Played For</u> : 4 days <br><u>Progress</u> : 5 missions </span>
+
+<!-------------- Art of Conquest-----------------------><span id="aoc" class="game">
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.lilithgame.sgame.gp.oss&amp;hl=en"><center><img id="aoctag" class="tags imagelink" src="./assets/game-aoc.png"></center></a><u>Profile</u> : SoulRipper<br><u>Castle Level</u> : 12<br><u>Game Rank</u> : Count<br><u>House</u> : Lions<br><u>House Rank</u>: Member<br><u>Might</u> : 36k<br><u>Total Honour</u> : 8036 </span>
+
+<!------------ No Limits -------------------------------><span id="nl" class="game">
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.ea.game.nfs14_row&amp;hl=en"><center><img id="nltag" class="tags imagelink" src="./assets/game-nl.png"></center></a><u>Profile</u> : NitroZeus<br><u>Level</u>: 52<br><u>Campaign Stats</u> : Chapter-12<br><u>Best Car</u>:<ul><li>FORD Shellby GT-500</li><li>SABARU BRZ</li><li>DODGE Challenger SRT-8</li><li>FERRARI F-40</li></ul></span>
+
+<!------------ Earth Wars---------------------------------------><span id="ew" class="game">
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.backflipstudios.transformersearthwars&amp;hl=en"><center><img id="ewtag" class="tags imagelink" src="./assets/game-ew.png"></center></a><u>Profile</u> : SparkGrinder <br><u>Game Started</u> : 12 Nov,2016<br><u>HQ Level</u> : 12<br><u>Player Level</u> : 48<br><u>Alliance Group (Formerly)</u> : Legends<br><u>Rank</u> : Officer<br><u>On-Duty Alliance</u> : Legend Knights<br><u>Battles Won</u> : 2955<br><u>Highest Win Streak</u> : 67 <br><u>Top Bots</u> : Pyra Magna (3*) , Arcee (4*) ,Kup (4*)<br><u>Reason for leaving the Game</u> -- Transformers : Forged To Fight</span><br></div>
+
+
+<!--------------------------------- School__Tab --------------------------------->
+<div id="school" class="tabcontent">
+<div id="schoolbg"></div>
+<span id="schooltabs" class="schooltab subtabs">
+<button id="sgbutton" class="schoollink present" onclick="subSchool('sgbutton', 'sgps')">About School</button>
+<button id="stbutton" class="schoollink" onclick="subSchool('stbutton', 'student')">Student Profile</button>
+<button id="rebutton" class="schoollink" onclick="subSchool('rebutton', 'results')">Exam Results</button></span>
+
+<span id="sgps" class="skool">
+<span id="skoolhead" class="ref"><center>ABOUT THE INSTITUTION</center></span><br>
+<center>XXXXX, XX</center><br>Yada Yada Yada Yada Yada Yada Yada</span>
+<span id="student" class="skool">
+<center><span class="ref">Brief Profile</span></center><br>
+Name - Rajnoor Singh Brar <br>
+Strength : Science , Math<br>Weakness : Languages<br><center>As for the Session-> 2017-18</center><br>Class - VIII D <br>Roll No. - 30<br>Class Rank - 4
+</span>
+<div id="results" class="skool">
+<center><span class="ref"><u>Exam Result:</u></span><br>Periodic - July &amp; December; Half Yearly</center><br>
+<!-------------Report Card Table------>
+<span id="table"><center><table>
+<tr><th>S 1</th><th>July</th><th>Half Yearly</th><th>December</th></tr>
+<tr><td>S 2</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>S 3</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>S 4</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>S 5</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>S 6</td><td>x</td><td>x</td><td>x</td></tr>
+</table></center></span>
+</div>
+</div>
+<!---------------- TAB CONTENTS FINISHED ------->
+
+<!--- Loaders And Welcome--->
+<div class="container"><center><div id="greenload" class="loader"></div></center></div>
+<div class="container"><center><div id="blueload" class="loader"></div></center></div>
+<div class="container"><center><div id="redload" class="loader"></div></center></div>
+<div class="container"><center><div id="goldload" class="loader"></div></center></div>
+
+<div id="welcomeground" class="welcome"><div id="welcometext" class="welcome">WELCOME!</div></div>
+<!----                               ______________________                  ---->
+<!----------------------------------- Fixed__Top___Headings ------><div id="head">
+<img src="./assets/head-border.png" id="headback">
+<img id="brarhead" src="./assets/head-Rajnoor_Brar.png">
+
+<!--------------------------- Menu__Bar ------------------------>
+<span id="tabs" class="tab">
+<button id="homebutton" class="tablinks greentab hb active" onclick="openHome()">HOME</button>
+<button id="biobutton" class="tablinks greentab pb" onclick="openBio()">Profile</button>
+<button id="gamebutton" class="tablinks greentab gb" onclick="openGame()">Gaming Stats</button>
+<button id="schoolbutton" class="tablinks greentab sb" onclick="openSchool()">Academic</button>
+ </span>
+<!----------------------------------------------------------------------------------------------------------------------></div>
+<script src="./scripts/javascript.js"></script><!---JavaScript--->
+<script src="./scripts/jquery-3.3.1.min.js"></script><!--jQuery Library-->
+<script src="./scripts/jquery.js"></script><!--jQuery-->
+</body></html>

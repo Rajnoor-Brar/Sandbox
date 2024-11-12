@@ -1,0 +1,692 @@
+/*-------------------Defining_Fonts-------------------*/
+@font-face {
+	font-family:"Kingthings";
+	src: url("../fonts/Kingthings.ttf");
+}
+@font-face {
+	font-family:"transformers";
+	src: url("../fonts/Transformers.ttf")
+}
+@font-face {
+	font-family:"gang of three";
+	src: url("../fonts/go3.ttf");
+}
+@font-face {
+	font-family:"sf transrobotics";
+	src: url("../fonts/SF TransRobotics.ttf");
+}
+@font-face {
+	font-family:"aardvark cafe";
+	src: url("../fonts/cafe.ttf")
+}
+@font-face {
+	font-family:"starcraft";
+	src: url("../fonts/starcraft.ttf")
+}
+@font-face {
+	font-family:"TechnoClastic";
+	src: url("../fonts/techno.ttf")
+}
+@font-face {
+	font-family:"batmanforeveralternate";
+	src: url("../fonts/batman.ttf")
+}
+@font-face {
+	font-family:"cooldots";
+	src: url("../fonts/Cooldots.ttf")
+
+}
+@font-face {
+	font-family:"most wanted";
+	src: url("../fonts/Most Wazted.ttf");
+	font-weight:bold;
+}
+@font-face {
+	font-family:"alien league";
+	src: url("../fonts/ALIEN.TTF");
+}
+@font-face {
+	font-family:"combatron";
+	src: url("../fonts/note_this.ttf")
+}
+@font-face {
+	font-family:"Furmanite";
+	src: url("../fonts/Furmanite.otf")
+}
+@font-face {
+	font-family:"Cyberverse";
+	src: url("../fonts/Cyberverse Condensed.otf")
+}
+@font-face {
+	font-family:"Combatron";
+	src: url("../fonts/Combatron.otf")
+}
+@font-face {
+	font-family:"cybertron";
+	src: url("../fonts/Cybertron Condensed.otf")
+}
+@font-face {
+	font-family:"transdings";
+	src: url("../fonts/Transdings.otf")
+}
+/*--------------------------------Styles---------------------------*/
+#head {
+	z-index:1;
+}
+#headback {
+    position:fixed;
+	width:100%;
+	height:14vh;
+	background-color:green;
+	top:0px;
+	left:0px;
+	right:0px;
+	}		
+#brarhead {
+    position:fixed;
+    top: 0.8%;
+	height:12vh;
+	width:26%;
+	left:37%;
+	}
+.tabcontent {
+	display:none;/*element will be invisible*/
+}
+body , html {height:100%}/*seemingly no use , but.....*/
+#basebg {
+	top:0%;
+	left:0%;
+	z-index:-1;
+	position:fixed;
+	height:125%;
+    width:100%;
+    background-image:url("../assets/GridGreen.png")}
+.base{
+	display:none;
+}
+#home {
+	left: 0px;
+	right: 0px;
+	font-family: "Kingthings";
+	font-size:1.75em;
+	color:black;
+	display:block;
+	background-image: ("../assets/base.jpg");
+	margin-left:15vw;
+	margin-right:0vw;
+	margin-top:25vh;
+	text-shadow:
+    -0.02em -0.02em 0 red,
+    0.02em -0.02em 0 red,
+    -0.02em 0.02em 0 red,
+    0.02em 0.02em 0 red;
+	}
+#biobg {
+	top:0%;
+	left:0%;
+	z-index:-1;
+	position:fixed;
+	height:125%;
+    width:100%;
+    background-image:url("../assets/GridBlue.png");
+	}
+#bio {
+	left: 0px;
+	right: 0px;
+	font-family: "cyberverse";
+	font-size:1.5em;
+	color:black;
+	background-origin:inherit;
+	text-align:justify;
+	margin-top:25vh;
+	margin-left:14%;
+	text-shadow:
+    -0.02em -0.02em 0 darksalmon,
+    0.02em -0.02em 0 darksalmon,
+    -0.02em 0.02em 0 darksalmon,
+    0.02em 0.02em 0 darksalmon;
+}
+#at {
+	font-family: "Kingthings";
+}
+#gamebg {
+	top:0%;
+	left:0%;
+	z-index:-1;
+	position:fixed;
+	height:125%;
+    width:100%;
+    background-image:url("../assets/GridRed.png");
+	}
+#gaming {
+	left: 0px;
+	right: 0px;
+	font-family: "cybertron";
+	font-size:1.75em;
+	line-height:1.3em;
+	color:black;
+	margin-top:26vh;
+	text-align:left;
+	margin-left:15.1%;
+	margin-right:0%;
+    }
+.tags {
+	max-width:20vw;
+	max-height:20vh;
+}
+#aoctag.tags{
+	position:absolute;
+	right:8.5%;
+	max-width:30vw;
+	max-height:45vh;
+}
+#nltag.tags{
+	position:absolute;
+	right:8%;
+	max-width:30vw;
+	max-height:45vh;
+}
+	/*top:35vh;*/
+#prtag.tags{
+	position:absolute;
+	top:39vh;
+	right:0%;
+	max-width:35vw;
+	max-height:45vh;
+}
+#mwtag.tags{
+	position:absolute;
+	right:0%;
+	max-width:40vw;
+	max-height:45vh;
+}
+#ewtag.tags{
+	top:45.75vh;
+	position:absolute;
+	right:0.5%;
+	max-width:35vw;
+	max-height:45vh;
+}
+#ftftag.tags {
+	position:absolute;
+	top:35vh;
+	right:0%;
+	max-height:30vh;
+	max-width:25vw;
+}
+#satag.tags {
+	position:absolute;
+	right:15%;
+	max-height:35vh;
+	max-width:30vw;
+}
+.bots {
+	position:absolute;
+	width:15vw;
+	height:35vh;
+}
+#drift.bots {
+	right:65vw;
+}
+#mv1.bots {
+	right:49vw;
+}
+#shockwave.bots {
+	right:33vw;
+}
+#soundwave.bots {
+	right:17vw;
+}
+#rhinox.bots {
+	right:1vw;
+}
+.hqhead {
+	width:50%;
+	}
+#intro.game{
+	position:relative;
+	text-shadow:
+    -0.02em -0.02em 0 darksalmon,
+    0.02em -0.02em 0 darksalmon,
+    -0.02em 0.02em 0 darksalmon,
+    0.02em 0.02em 0 darksalmon;
+    }
+#gstat {
+	z-index:0;
+	color:rgb(0,0,0);
+	font-size:1.05em;
+	font-family:"Starcraft";
+}
+#ftf.game{
+	text-shadow:
+    -0.02em -0.02em 0 goldenrod,
+    0.02em -0.02em 0 goldenrod,
+    -0.02em 0.02em 0 goldenrod,
+    0.02em 0.02em 0 goldenrod;
+}
+#mw.game{
+	font-family:"most wanted";
+	text-shadow:
+    -0.02em -0.02em 0 chocolate,
+    0.02em -0.02em 0 chocolate,
+    -0.02em 0.02em 0 chocolate,
+    0.02em 0.02em 0 chocolate;
+    }
+#pr.game{
+	text-shadow:
+    -0.02em -0.02em 0 rgb(0,128,0),
+    0.02em -0.02em 0 rgb(0,128,0),
+    -0.02em 0.02em 0 rgb(0,128,0),
+    0.02em 0.02em 0 rgb(0,128,0)
+}	
+#sa.game{
+	text-shadow:
+    -0.02em -0.02em 0 DodgerBlue,
+    0.02em -0.02em 0 DodgerBlue,
+    -0.02em 0.02em 0 DodgerBlue,
+    0.02em 0.02em 0 DodgerBlue
+}
+#nl.game{
+	text-shadow:
+    -0.02em -0.02em 0 BurlyWood,
+    0.02em -0.02em 0 BurlyWood,
+    -0.02em 0.02em 0 BurlyWood,
+    0.02em 0.02em 0 BurlyWood
+}
+#ew.game{
+	text-shadow:
+    -0.02em -0.02em 0 SlateGray,
+    0.02em -0.02em 0 SlateGray,
+    -0.02em 0.02em 0 SlateGray,
+    0.02em 0.02em 0 SlateGray
+}
+#aoc.game{
+	text-shadow:
+    -0.02em -0.02em 0 Sienna,
+    0.02em -0.02em 0 Sienna,
+    -0.02em 0.02em 0 Sienna,
+    0.02em 0.02em 0 Sienna
+}
+.insignia{
+	font-family:"transdings";
+}
+#schoolbg {
+	top:0%;
+	left:0%;
+	z-index:-1;
+	position:fixed;
+	height:100%;
+    width:100%;
+    background-image:url("../assets/GridGold.png");
+	}
+#school {
+	left: 0px;
+	right: 0px;
+	font-family: "aardvark cafe";
+	font-size:1.5em;
+	line-height:1.3em;
+	text-align:justify;
+	margin-top:25vh;
+	margin-left:14%;
+	margin-right:4%;
+    text-shadow:
+    -0.02em -0.02em 0 royalblue,
+    0.02em -0.02em 0 royalblue,
+    -0.02em 0.02em 0 royalblue,
+    0.02em 0.02em 0 royalblue;	
+    }
+#skoolhead {
+	margin-left:-2.025%;
+	font-size:1.75em
+}
+.tab {
+	height:5vh;
+	position:fixed;
+	width:100%;
+	left:0px;
+	top:14vh;
+	border-left:solid;
+	border-color:silver;
+	border-width:1.25%;
+    overflow: hidden;
+    background-color: rgb(0,0,0);
+}
+.tab b{
+	float: left;
+    display: block;
+    color: white;
+	font-family:"batmanforeveralternate";
+}
+.tab button {
+    float: left;
+    display: block;
+	border:none;
+    color: white;
+	font-family:"batmanforeveralternate";
+    text-align: center;
+    padding: 0.55% 1%;
+    text-decoration: overline;
+	background-color: inherit;
+}
+/*------------------Active Buttons-------------------------------------*/
+.tab button.greentab.active{
+	color:black;
+	background-color: green ;
+	outline:none;
+}
+.tab button.bluetab.active{
+	color:black;
+	background-color: blue;
+	outline:none;
+}
+.tab button.redtab.active{
+	color:black;
+	background-color: red;
+	outline:none;
+}
+.tab button.goldtab.active{
+	color:black;
+	background-color:goldenrod ;
+	outline:none;
+}
+/*------------------------Hovered inActive Buttons-------------------------------------*/
+button.greentab:hover {
+    background-color: darkgreen;
+}
+button.bluetab:hover {
+    background-color: navy;
+}
+button.redtab:hover {
+    background-color: darkred;
+}
+button.goldtab:hover {
+    background-color: darkgoldenrod;
+}
+/*----------------------------------Hovered Active Buttons-------------------------------------*/
+.tab button.greentab.active:hover{
+	color:limegreen;
+	background-color:darkgreen;
+}
+.tab button.bluetab.active:hover{
+	color:dodgerblue;
+	background-color: navy;
+}
+.tab button.redtab.active:hover{
+	color:red;
+	background-color: darkred;
+}
+.tab button.goldtab.active:hover{
+	color:gold;
+	background-color: darkgoldenrod;
+}
+/*--Below styles elements of class='ref' are given so below so that can over ride previously given style in their parent element(in which they lie inside--*/
+span.rsb {
+	font-size:1.025em;
+	font-weight:bold;
+}
+span.ref {
+	z-index:0;
+	color:rgb(0,0,0);
+	font-size:2em;
+	letter-spacing:0.1em;
+	text-transform: lowercase;
+	font-family:"transformers";
+	text-shadow:
+    -0.04em -0.04em 0 seagreen,
+    0.04em -0.04em 0 orangered,
+    -0.04em 0.04em 0 cadetblue,
+    0.04em 0.04em 0 goldenrod;
+	
+}
+#table td , table , th{
+    font-family: "TechnoClastic";
+	font-size:0.84em;
+	text-align:center;
+	border-collapse: collapse;
+	text-shadow:0px 0px 0 black;/*no shadow bcoz off-sets 0 px,defined to override shadows mentioned above */
+}
+#table td{
+    border: 0.06em solid #ddd;
+    padding: 0.25em;
+}
+#table tr:nth-child(odd){background-color: rgb(200,200,200);}
+#table tr:nth-child(even){background-color: rgb(175,175,175);}
+#table td:hover {background-color: rgb(145,145,145);}
+#table th {
+	border-left:solid;
+	border-right:solid;
+	border-width:0.06em;
+	border-color: rgb(200,200,200);
+    padding: 0.5em;
+    background-color: rgb(0,255,25);
+    color: black;
+}
+#table th:hover {background-color: rgb(0,150,0);}
+#lineid{
+	visibility:visible;
+}
+.imagelink:hover{
+	opacity: 0.75;
+}
+.smedia {
+	width:17.5%;
+}
+.hometab {
+	bottom:0px;
+	position:fixed;
+	left:0px;
+	width:12.45%;
+	border-left:solid;
+	border-color:forestgreen;
+	border-width:1.13%;
+    overflow: hidden;
+    background-color: rgb(0,20,0);
+}
+.hometab button {
+    float:right;
+    display: block;
+	width:99.5%;
+	border:none;
+    color: white;
+	font-family:"batmanforeveralternate";
+    text-align: center;
+	font-size:9px;
+    padding: 4.75% 5.25%;
+    text-decoration: overline;
+	background-color: inherit;
+}
+.hometab button.insight{
+	color:black;
+	background-color: rgb(0,150,0) ;
+	outline:none;
+}
+.hometab button:hover {
+    background-color: green;
+	color:limegreen;
+}
+.biotab {
+	bottom:0px;
+	position:fixed;
+	left:0px;
+	width:12.45%;
+	border-left:solid;
+	border-color:rgb(0,0,225);
+	border-width:1.13%;
+    overflow: hidden;
+    background-color: rgb(0,0,12);
+}
+.biotab button {
+    float:right;
+    display: block;
+	width:99.5%;
+	border:none;
+    color: white;
+	font-family:"batmanforeveralternate";
+    text-align: center;
+	font-size:10px;
+    padding: 4.75% 5.25%;
+    text-decoration: overline;
+	background-color: inherit;
+}
+.biotab button.bioactive{
+	color:black;
+	background-color: rgb(0,100,175) ;
+	outline:none;
+}
+.biotab button:hover {
+    background-color: dodgerblue;
+	color:blue;
+}
+.gametab {
+	bottom:0px;
+	position:fixed;
+	left:0px;
+	width:15%;
+	border-left:solid;
+	border-color:rgb(180,14,3);
+	border-width:1.13%;
+    overflow: hidden;
+    background-color: rgb(15,4,1);
+}
+.gametab button {
+    float:right;
+    display: block;
+	width:100%;
+	border:none;
+    color: white;
+	font-size:9px;
+	font-family:"batmanforeveralternate";
+    text-align: center;
+    padding: 4.75% 2.25%;
+    text-decoration: overline;
+	background-color: inherit;
+}
+.gametab button.online{
+	color:black;
+	background-color: rgba(240,15,3,0.9) ;
+	outline:none;
+}
+.gametab button:hover {
+    background-color: red;
+	color:rgb(125,0,0);
+}
+.gamecontent {
+	display:none;
+}
+.schooltab {
+	bottom:0px;
+	
+	position:fixed;
+	left:0px;
+	width:12.45%;
+	border-left:solid;
+	border-color:rgb(230,115,0);
+	border-width:1.13%;
+    overflow: hidden;
+    background-color: rgb(26,12,0);
+}
+.schooltab button {
+    float:right;
+    display: block;
+	width:100%;
+	border:none;
+    color: white;
+	font-size:10px;
+	font-family:"batmanforeveralternate";
+    text-align: center;
+    padding: 4.75% 5.25%;
+    text-decoration: overline;
+	background-color: inherit;
+}
+.schooltab button.present{
+	color:black;
+	background-color: goldenrod;
+	outline:none;
+}
+.schooltab button:hover {
+    background-color: gold;
+	color:darkgoldenrod;
+}
+.subtabs{
+	top:11.5%;
+}
+#welcomeground{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100vw;
+	height:100vh;
+	z-index:3;
+	opacity:0.95;
+	animation: welcomeground 5s linear 1;
+	background-color:rgb(0,0,0);
+}
+#welcometext{
+	width:100vw;
+	position:fixed;
+	text-align:center;
+	font-family:"combatron";
+	font-size:40vh;
+	color:red;
+	animation: welcome 3s linear 1;
+	top:25vh;
+}
+.container {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100vw;
+}
+.loader {
+	top:40vh;
+	float:center;
+	position:relative;
+	z-index:2;
+	border: 8px solid slategray;
+    border-radius: 50%;
+    width: 20vh;
+    height: 20vh;
+	max-width:90vw;
+	max-height:90vw;
+    animation: spin 0.85s linear infinite;
+	display:none;
+}
+#greenload{
+    border-top: 8px solid rgb(0,200,0);
+}
+#blueload{
+	border-top: 8px solid dodgerblue;
+}
+#redload{
+	border-top: 8px solid red;
+}
+#goldload{
+	border-top: 8px solid goldenrod;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes welcome{
+	0% {color: firebrick; font-size:18vw; top:30vh}
+	6% {color:red; font-size:18vw; top:30vh}
+	12% {color:orange; font-size:18vw; top:30vh}
+	18% {color:yellow; font-size:18vw; top:30vh}
+	25% {color:goldenrod; font-size:18vw; top:30vh}
+	30% {color:limegreen; font-size:18vw; top:30vh}
+	36% {color:green; font-size:18vw; top:30vh}
+	42% {color:forestgreen; font-size:18vw; top:30vh}
+	48% {color:navy; font-size:18vw; top:30vh}
+	54% {color:blue; font-size:18vw; top:30vh}
+	58% {color:dodgerblue; font-size:18vw; top:30vh}
+	60% {color:white; font-size:18vw; top:30vh}
+	80% {transform: rotate(0deg);}
+	89% {transform: rotate(359deg)}
+	90% {transform: rotate(1deg);}
+	100% {color:white; transform: rotate(359deg); font-size:0vw; top:50vh}
+}
+@keyframes welcomeground{
+	0% {opacity:0.95;}
+	60% {opacity:0.95;}
+	100% {opacity:0;}
+}

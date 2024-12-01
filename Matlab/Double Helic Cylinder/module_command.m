@@ -10,7 +10,7 @@ cross_density=15;                   % Higher Value will reduce number of cross-s
 showCoaxialLines = 0;
 coax_density=int16(0.8/roundness);
 
-showAxis = 1;
+showAxis = 0;
 
 p   = impdata(1,:);
 q   = impdata(2,:);

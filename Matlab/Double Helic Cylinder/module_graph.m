@@ -30,8 +30,6 @@ if showCoaxialLines == 1
     end
 end
 
-% plot3(x,zeros(count),zeros(count),Color='Black',LineWidth=2);
-
 clear i;
 
 hold off;

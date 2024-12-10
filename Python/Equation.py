@@ -319,22 +319,7 @@ class Equation():
             cache=["x","y","z","t","u","v","w","α","β","γ","ε","θ","κ","λ","μ","ρ","σ","φ"]
             syms+=[x for x in cache if x not in syms][:dif]
             return syms
-    
-    @classmethod
-    def rootCoeffs(cls, roots:list[float]) -> list[float]:
-        # To expand factorised equation into coefficients: (x-1)(x-2) => x^2 - 3x + 2
-        n=len(roots)
-        coeffs=[0 for _ in range(n+1)]
-        
-        def rootMult(k,j,level):
-            if (level==k):return 1
-            val=0
-            for i in range(j,n): val+= roots[i]*rootMult(k,i+1,level+1)
-            return val
 
-        for k in range(n+1): coeffs[n-k]=(rootMult(k,0,0)*pow(-1,k))
-        return coeffs
-    
     @classmethod
     def coeffSetUp(cls,dimensions:int,syms:list[str],deg:int):
         sp=Equation.sp

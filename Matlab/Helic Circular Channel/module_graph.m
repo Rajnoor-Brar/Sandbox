@@ -1,40 +1,38 @@
 
 g_cyl= surf(cyl_x,cyl_y,cyl_z);
 hold on
+run("sub_graph_shadows.m");
 
 if showAxis == 1
-    g_axis = plot3(x,y,z);
-    g_axis.LineWidth=3;
+    g_axis = plot3(x, a, b, 'LineWidth', 3);
+    shad_a=0.4;
+    g_shadow_xy = plot3(x, a, b*0.01-20, 'LineWidth', 2, 'Color', [g_axis.Color, shad_a]);
+    g_shadow_xz = plot3(x, a*0.01+15, b, 'LineWidth', 2, 'Color', [g_axis.Color, shad_a]);
+    g_shadow_yz = plot3(x*0.01-10, a, b, 'LineWidth', 2, 'Color', [g_axis.Color, shad_a]);
 end
 
 if showCrossSections == 1
-    cross_xyz=cat(3,cyl_x(1:end,1:(1+cross_density):end), cyl_y(1:end,1:(1+cross_density):end),cyl_z(1:end,1:(1+cross_density):end));
-    g_cross = plot3(cross_xyz(:,:,1),cross_xyz(:,:,2),cross_xyz(:,:,3));
-    for i= 1:size(g_cross,1)
-        g_cross(i,1).LineWidth= 1;
-        %g_cross(i,1).Color= '#771DBF';
-    end
+    g_cross       = plot3(cyl_x(1:end, 1:(1+cross_density):end),...
+                          cyl_y(1:end, 1:(1+cross_density):end),...
+                          cyl_z(1:end, 1:(1+cross_density):end),...
+                          'LineWidth',1);
 end
 
 if showCoaxialLines == 1
-    coax_xyz=cat(3,cyl_x(1:(1+coax_density):(end),1:end)',cyl_y(1:(1+coax_density):(end),1:end)',cyl_z(1:(1+coax_density):(end),1:end)');
-    g_coax = plot3(coax_xyz(:,:,1),coax_xyz(:,:,2),coax_xyz(:,:,3));
-    for i= 1:size(g_coax,1)
-        g_coax(i,1).LineWidth= 1;
-        %g_coax(i,1).Color='#A61419';
-    end
+    g_coax = plot3(cyl_x(1:(1+coax_density):end, 1:end)',...
+                   cyl_y(1:(1+coax_density):end, 1:end)',...
+                   cyl_z(1:(1+coax_density):end, 1:end)',...
+                   'LineWidth',1);
 end
 
-% plot3(x,zeros(count),zeros(count),Color='Black',LineWidth=2);
-
 clear i;
-
 hold off;
 
 axis equal;
 axis auto;
 
 run("sub_graph_shade.m");
+%xlim([-11,51]); ylim([-11,16]); zlim([-21,15]);
 
 xlabel("x-axis");
 ylabel("y-axis");

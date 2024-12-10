@@ -6,13 +6,11 @@ for n=1:size(x,2)
     norm_vec      = [1 tangent_y(n) tangent_z(n)];
     norm_vec      = norm_vec/norm(norm_vec);
     
-    focal_vec     = [(p(n)-u(n))/2 (q(n)-v(n))/2 (r(n)-w(n))/2];
-    
-    minor_vec     = cross(norm_vec,focal_vec);
-    minor_vec     = minor_vec/norm(minor_vec);
-    
-    major_vec     = focal_vec;
+    major_vec     = [(p(n)-u(n))/2 (q(n)-v(n))/2 (r(n)-w(n))/2]; % = focal_vector
     major_vec     = major_vec/norm(major_vec);
+
+    minor_vec     = cross(norm_vec,major_vec);
+    minor_vec     = minor_vec/norm(minor_vec);
     
     point_vec     = (major(n)*(cos(t)' * major_vec)+ minor(n)*(sin(t)' * minor_vec));
 

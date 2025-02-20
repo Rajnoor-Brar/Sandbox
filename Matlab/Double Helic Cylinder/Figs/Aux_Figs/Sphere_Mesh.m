@@ -27,9 +27,11 @@ function Sphere_Mesh()
 
         % Plot the sphere mesh
         patch('Vertices', nodes, 'Faces', faces, ...
-              'FaceColor', [0.2, 0.6, 0.1], 'FaceAlpha', 0.94, ...
-              'EdgeColor', 'k');
+              'FaceColor', [0.25, 0.25, 0.25], 'FaceAlpha',1, ...
+              'EdgeColor', 'k',...
+          'FaceLighting',"gouraud",'AmbientStrength', 0.2,'SpecularStrength',0.4);
     end
+                      % Set lighting style
 
     % Adjust axis settings
     axis equal;
@@ -40,7 +42,7 @@ end
 function [nodes, faces] = create_sphere_mesh(radius, lat_divisions, lon_divisions)
     % Create the nodes of the sphere using latitude and longitude divisions
     theta = linspace(0, pi, lat_divisions);         % Latitude angles
-    phi = linspace(0, 2 * pi, lon_divisions);       % Longitude angles
+    phi = linspace(-pi/3, 5 * pi/3, lon_divisions);       % Longitude angles
     [Theta, Phi] = meshgrid(theta, phi);            % Create a grid of angles
 
     % Compute Cartesian coordinates of the sphere

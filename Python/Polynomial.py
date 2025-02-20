@@ -76,7 +76,10 @@ class Polynomial():
                 for i in range(self.degree):coefficients[i]+=self.coefficients[i]
                 for i in range(other.degree):coefficients[i]-=other.coefficients[i]           
             
-        return Polynomial(syms=self.sym,coefficients=coefficients,name=f"{self.name}-{other.name}")
+            return Polynomial(syms=self.sym,coefficients=coefficients,name=f"{self.name}-{other.name}")
+       
+        else: raise AttributeError(f"Polynomials are of different variables, {self.sym} and {other.sym}. Use 'Equation' class for multivariate multiplication capability.")
+
      
     def __rsub__(self,other:"Polynomial") -> "Polynomial":  return -1*(self-other)
           
@@ -93,7 +96,8 @@ class Polynomial():
                 for b in range(other.degree+1):
                     coefficients[a+b]+=self.coefficients[a]*coefficients[b]
         
-            return Polynomial(deg=degree,coefficients=coefficients)
+            return Polynomial(coefficients=coefficients,syms=self.sym,name=f"{self.name}*{other.name}")
+        else: raise AttributeError(f"Polynomials are of different variables, {self.sym} and {other.sym}. Use 'Equation' class for multivariate multiplication capability.")
 
     def __rmul__(self,other:"Polynomial") -> "Polynomial":  return self*other
     
@@ -102,6 +106,7 @@ class Polynomial():
             answer=self.copy()
             answer.coefficients=answer.coefficients/other
             return answer
+        
         else: raise TypeError("Divisor must be a number. Polynomial division is not yet supported")
 
     def __rtruediv__(self,other) -> None:
@@ -112,6 +117,7 @@ class Polynomial():
             answer=self.copy()
             for _ in range(power-1):
                 answer=answer*self
+            answer.name=f"{self.name}{Polynomial.sp(power)}"
             return answer
         else: raise TypeError("Exponent must be an integer") 
     
@@ -159,21 +165,25 @@ class Polynomial():
             return all(self.coefficients[index]==other.coefficients[index] for index in range(self.degree+1))
         else: return False
     
-    def integrate(self) -> "Polynomial":
+    def integrate(self,order:int=1) -> "Polynomial":
         coeffs=self.coefficients.copy()
-        coeffs.insert(0,0)
-        for i in range(1,len(coeffs)):coeffs[i]=coeffs[i]/i
-        return Polynomial(coefficients=coeffs,syms=self.sym,name=self.name)
+        
+        for _ in range(order):
+            coeffs.insert(0,0)                                                  # All constants of integration assumed 0
+            for i in range(1,len(coeffs)):coeffs[i]=coeffs[i]/i
+        
+        return Polynomial(coefficients=coeffs,syms=self.sym,name=f"{self.name}·d{self.sym}{Polynomial.sp(order)}")
     
-    def differentiate(self) -> "Polynomial":
+    def differentiate(self,order:1) -> "Polynomial":
         coeffs=self.coefficients.copy()
-        for i in range(len(coeffs)):coeffs[i]=coeffs[i]*i
-        coeffs.pop(0)
-        return Polynomial(coefficients=coeffs,syms=self.sym,name=self.name)
+        for _ in range(order):
+            for i in range(len(coeffs)):coeffs[i]=coeffs[i]*i
+            coeffs.pop(0)
+        return Polynomial(coefficients=coeffs,syms=self.sym,name=f"d{self.name}/d{self.sym}{Polynomial.sp(order)}")
     
     @classmethod
     def sp(cls,ep:str) -> str:
-        # To get superscript characters when typing Polynomial
+        # To get superscript characters when giving String output of Polynomial
         dict={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"}
         return "".join([dict[i] for i in str(int(ep))])
     
@@ -184,10 +194,11 @@ class Polynomial():
         coeffs=[0 for _ in range(n+1)]
         
         def rootMult(k,j,level):
-            if (level==k):return 1
-            val=0
-            for i in range(j,n): val+= roots[i]*rootMult(k,i+1,level+1)
-            return val
+            if (level==k):return 1                                          # Exit Condition
+            
+            val=0                                                           # Multiplies 'k' number of roots at a time in all combinations, for 'k'th coefficients 
+            for i in range(j,n): val+= roots[i]*rootMult(k,i+1,level+1)     # Eg, a₁(a₂(a₃ + a₄ + a₅) + a₃(a₄ + a₅) + a₄(a₅)) + a₂(a₃(a₄ + a₅) + a₄(a₅)) + a₃(a₄(a₅))
+            return val                                                      # sum of all triplet combinations of (a1,a2,a3,a4,a5)
 
         for k in range(n+1): coeffs[n-k]=(rootMult(k,0,0)*pow(-1,k))
         return coeffs

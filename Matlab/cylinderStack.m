@@ -1,0 +1,55 @@
+% Parameters
+radius = 2;                  % Radius of the cylinders
+height = [2.292, 1.089, 0.211, 1.625, 1.283, 0.599, 0.759, 0.315, 2.597, 2.463]; % Heights of each cylinder
+colors = ['r', 'r', 'g', 'g', 'g', 'r', 'g', 'g', 'g', 'r']; % Colors for each cylinder
+zOffset = 0;                 % Initial offset for stacking
+linewid = 1;               % Line width for cross-section circles
+
+% Number of cylinders
+numCylinders = length(height);
+
+% Create figure
+figure;
+hold on;
+axis equal;
+
+% Loop through each cylinder
+for i = 1:numCylinders
+    [X, Y, Z] = cylinder(radius);    % Generate cylinder coordinates
+    Z = Z * height(i) + zOffset;    % Scale and position cylinder height
+    
+    % Plot cylinder surface
+    cyl = surf(X, Y, Z, 'FaceColor', colors(i), 'EdgeColor', 'none');
+    
+    % Apply visual settings to the cylinder
+    cyl.FaceLighting = "gouraud";
+    cyl.AmbientStrength = 0.4;
+    cyl.SpecularStrength = 1;
+    cyl.DiffuseStrength = 0.4;
+    cyl.SpecularExponent = 50
+    
+    % Plot bottom circular cross-section in black
+    theta = linspace(0, 2 * pi, 100); % Angle for the circle
+    X_bottom = radius * cos(theta);
+    Y_bottom = radius * sin(theta);
+    Z_bottom = zOffset * ones(size(theta));
+    plot3(X_bottom, Y_bottom, Z_bottom, 'k', 'LineWidth', linewid); % Black circle
+    
+    % Plot top circular cross-section in black
+    Z_top = (zOffset + height(i)) * ones(size(theta));
+    plot3(X_bottom, Y_bottom, Z_top, 'k', 'LineWidth', linewid); % Black circle
+    
+    % Update offset for the next cylinder
+    zOffset = zOffset + height(i);
+end
+
+% Add lighting for better visualization
+light('Position', [-4 1 6], 'Style', 'local');
+light('Position', [-1 -1 1], 'Style', 'infinite');
+
+% Add labels and grid
+xlabel('X-axis');
+ylabel('Y-axis');
+zlabel('Z-axis');
+grid on;
+view(3);

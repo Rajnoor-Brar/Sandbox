@@ -1,5 +1,5 @@
 import math
-from Equation import Equation as eq
+from Polynomial import Polynomial as eq
 xn=45
 h=1
 y=[1,1.03553,1.07237,1.11061,1.15037,1.19175]

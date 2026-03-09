@@ -1,0 +1,20 @@
+function [output] = gammaFunc(value)
+
+arguments (Input)
+    value double
+end
+
+arguments (Output)
+    output double
+end
+
+tStart = 0;
+tEnd = 200;
+nSteps = 1000;
+edgeGap = 0;
+dt = (tEnd-tStart)/nSteps;
+
+output = 0;
+for t = (tStart+ edgeGap):dt:(tEnd-edgeGap)
+    output = output+ t^(value-1)* exp(-1*t)*dt;
+end

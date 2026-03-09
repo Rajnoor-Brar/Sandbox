@@ -1,0 +1,180 @@
+function PlanarLattice(coords, coords_f, idx, vals)
+% coords   : {X, Y} full lattice grids
+% coords_f : {Xf, Yf} filtered point lists
+% idx      : rank index per filtered point (1-based)
+% vals     : unique rank values (for count / labeling)
+
+    %% ===== USER OPTIONS =====
+    showGrid      = true;
+    showScatter   = true;
+    showRankLines = true;
+
+    alpha     = 0.25;
+    gridColor = [0 0 0 alpha];
+    markSize  = 4;
+
+    X  = coords{1};
+    Y  = coords{2};
+    Xf = coords_f{1};
+    Yf = coords_f{2};
+
+    %% ===== FIGURE =====
+    figure('Name','2D Rank Lattice')
+    hold on
+    axis equal
+    box on
+
+    plot(0,0,'k+','LineWidth',1.5)
+
+    nRanks = numel(vals);
+
+    %% ===== COLORMAP =====
+    cmap = lines(nRanks);
+    hsv_cmap = rgb2hsv(cmap);
+
+    Vmin  = 0.7;
+    gamma = 0.7;
+
+    t = linspace(0,1,nRanks).';
+    Vscale = Vmin + (1 - Vmin) * (1 - t).^gamma;
+    hsv_cmap(:,3) = hsv_cmap(:,3) .* Vscale;
+
+    cmap = hsv2rgb(hsv_cmap);
+    colormap(cmap)
+    clim([1 nRanks])
+    colorbar
+
+    %% ===== SCATTER =====
+    hScatter = scatter(Xf, Yf, markSize, idx, 'filled');
+
+    %% ===== STORAGE =====
+    markerHandles = cell(nRanks,1);
+    lineHandles   = cell(nRanks,1);
+
+    %% ===== BUILD RANK OBJECTS =====
+    for r = 1:nRanks
+
+        mask = (idx == r);
+        xr = Xf(mask);
+        yr = Yf(mask);
+
+        if numel(xr) < 2
+            continue
+        end
+
+        theta = atan2(yr, xr);
+        [~,ord] = sort(theta);
+        xr = xr(ord);
+        yr = yr(ord);
+
+        % close loop
+        xr(end+1) = xr(1);
+        yr(end+1) = yr(1);
+
+        % alternating style
+        if mod(r,2) == 0
+            lineStyle = '--';
+            edgeAlpha = 0.85;
+            marker    = 'd';
+        else
+            lineStyle = '-';
+            edgeAlpha = 0.35;
+            marker    = 'o';
+        end
+
+        % ---- markers ----
+        markerHandles{r} = plot(xr, yr, ...
+            'LineStyle','none', ...
+            'Marker',marker, ...
+            'MarkerSize',markSize, ...
+            'MarkerFaceColor',cmap(r,:), ...
+            'MarkerEdgeColor',cmap(r,:), ...
+            'Visible','off');
+
+        % ---- rank loop lines ----
+        lineHandles{r} = patch( ...
+            'XData', xr, ...
+            'YData', yr, ...
+            'FaceColor','none', ...
+            'EdgeColor',cmap(r,:), ...
+            'LineStyle',lineStyle, ...
+            'EdgeAlpha',edgeAlpha, ...
+            'LineWidth',1.2, ...
+            'Visible','off');
+    end
+
+    %% ===== SLIDER =====
+    hSlider = uicontrol( ...
+        'Style','slider', ...
+        'Min',1, ...
+        'Max',nRanks, ...
+        'Value',1, ...
+        'SliderStep',[1/(nRanks-1) 5/(nRanks-1)], ...
+        'Units','normalized', ...
+        'Position',[0.2 0.02 0.6 0.04], ...
+        'Callback',@(src,~) updateRank(round(src.Value)) );
+
+    %% ===== TOGGLES =====
+
+    uicontrol('Style','checkbox','String','Scatter', ...
+        'Value',showScatter,'Units','normalized', ...
+        'Position',[0.02 0.87 0.15 0.05], ...
+        'Callback',@(s,~) toggleScatter(s.Value));
+
+    uicontrol('Style','checkbox','String','Rank Lines', ...
+        'Value',showRankLines,'Units','normalized', ...
+        'Position',[0.02 0.82 0.15 0.05], ...
+        'Callback',@(s,~) toggleLines(s.Value));
+
+    %% ===== CALLBACKS =====
+    function toggleGrid(val)
+        showGrid = logical(val);
+        set(hGrid,'Visible',onOff(showGrid));
+    end
+
+    function toggleScatter(val)
+        showScatter = logical(val);
+        set(hScatter,'Visible',onOff(showScatter));
+    end
+
+    function toggleLines(val)
+        showRankLines = logical(val);
+        updateRank(round(hSlider.Value));
+    end
+
+    function updateRank(r)
+
+        % hide all rank graphics
+        for k = 1:nRanks
+            if ~isempty(markerHandles{k})
+                markerHandles{k}.Visible = 'off';
+            end
+            if ~isempty(lineHandles{k})
+                lineHandles{k}.Visible = 'off';
+            end
+        end
+
+        % show selected
+        if ~isempty(markerHandles{r})
+            markerHandles{r}.Visible = 'on';
+        end
+        if showRankLines && ~isempty(lineHandles{r})
+            lineHandles{r}.Visible = 'on';
+        end
+
+        title(sprintf('Rank = %d', r))
+    end
+
+    %% ===== INIT =====
+    updateRank(1)
+
+end
+
+%% ===== HELPER =====
+function s = onOff(tf)
+    if tf
+        s = 'on';
+    else
+        s = 'off';
+    end
+end

@@ -1,0 +1,21 @@
+clc; clear;
+nSteps = 11;
+
+closeFigs = false;
+
+x = linspace(0, 10, nSteps); 
+y = linspace(0, 10, nSteps);
+
+X = meshgrid(x, y);
+Y = meshgrid(y,x)';
+
+A = X.^2 - Y.^2;
+B = 2*(X.*Y);
+
+f1 = figure("Name", 'z',"NumberTitle","off");
+hold on;
+plot(X,Y,'LineWidth',1.5,"Color","#fdd")
+plot(X',Y','LineWidth',1.5,"Color","#ddf")
+
+hold off;
+xlabel("n"); ylabel("% error"); axis auto;

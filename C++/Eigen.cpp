@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 
-float temp, lambda_new=0 , lambda_old, error;
+float lambda_new=0 , lambda_old, error;
 int i,j,n, step=1;
 
 cout<< setprecision(3)<< fixed;  // Show 3 digits after decimal

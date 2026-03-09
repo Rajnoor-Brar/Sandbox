@@ -1,1 +1,4 @@
 ROOT--Pythia/examples
+ROOT--Pythia/output
+ROOT--Pythia/dump
+ROOT--Pythia/*.exe

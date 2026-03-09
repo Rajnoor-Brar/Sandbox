@@ -1,0 +1,63 @@
+clc; clear;
+xStart = 0; 
+xEnd = -11;
+nSteps = 1000;
+
+[showCustom, showBuilt] = deal(1, 1);
+[graphLog, errorLog] = deal(1, 1);
+
+y1=zeros(nSteps,1); y3=y1;
+
+dx = (xEnd-xStart)/nSteps;
+x = xStart:dx:xEnd-dx; x1= xStart:xEnd;
+
+closeFigs = true;
+
+for n = 1:nSteps
+    if showCustom, y1(n) = (gammaFunc(x(n))); end
+    if showBuilt,  y3(n) =  gamma    (x(n));        end
+end
+
+% y = 100*abs((y3-y1))./y3; y2 = factorial(x1-1);
+
+if closeFigs, close all; end
+
+if (showBuilt*showCustom~=0)
+
+    f3 = figure("Name", 'Gamma % Error',"NumberTitle","off");
+    % plot(x,y,'LineWidth',1.5,"Color","#e22")
+    xlabel("n"); ylabel("% error"); axis auto;
+
+    f2 = figure("Name", 'Gamma Error',"NumberTitle","off");
+    plot(x,abs(y3-y1),'LineWidth',1.5,"Color","#c28")
+    xlabel("n"); ylabel("Absolute Error");
+    axis auto;
+    if errorLog
+        yscale log
+    end
+end
+
+f1 = figure("Name", 'Gamma',"NumberTitle","off");
+if showCustom, plot(x,y1,'LineWidth',1.5, 'color','#22e'); end
+hold on;
+
+if (numel(x1)<15)
+    plot(x1, y2, '+', "Color", "#272", 'MarkerSize', 15, "LineWidth", 1.5)
+    for i = 1:numel(x1)
+        text(x1(i), y2(i), sprintf('%.2f', y2(i)), ...
+            'VerticalAlignment','bottom', 'HorizontalAlignment','right', ...
+            'FontSize',10, 'Color','#121')
+    end
+end
+
+if showBuilt, plot(x,y3,'LineWidth',1.5, 'Color','#e22'); end
+hold off;
+
+xlabel("n");
+ylabel("gamma(n) , n!");
+axis auto;
+if graphLog
+    yscale log 
+end
+
+
